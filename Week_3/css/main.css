@@ -1,0 +1,84 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+/*tag selector*/
+div{
+	background-color: rgba(100,50,50,0.3);
+	/*border: 1px solid blue;*/
+
+}
+
+div.thumbnail img{
+	width: 100%;
+	height: 100%;
+}
+
+div.description {
+	width: 600px;
+	height: auto;
+	padding-left: 30px;
+	margin: 10px;
+	padding-bottom: 10px;
+	padding-right: 10px;
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #FFF;
+	font-family: "Helvetica", arial, sans-serif;
+	font-weight: lighter;
+	padding-left: 20px;
+}
+
+
+/*id selector*/
+
+#wrapper{
+	width:1000px;
+	height: 1200px;
+	margin:0 auto; 
+}
+
+#top-images{
+	margin: 10px;
+	width: 970px;
+	height: 10px;
+}
+
+
+#left-column{
+	width: 500px;
+	float: left;
+	margin: 0px;
+	overflow: hidden;
+}
+
+#right-column{
+	width: 200px;
+	height: 200px;
+	margin: 10px;
+	padding:10px;
+	float: right;
+	
+}
+
+
+/*class selector*/
+.thumbnail{
+	width: 600px;
+	height: 500px;
+	float: left;
+	margin: 10px;
+	overflow: hidden; /*you can also do scroll with overflow*/
+	padding: 10px;
+
+}
+
+.clear{
+	clear: both;
+}
+
+.space{
+	margin-top: 350px;
+}
