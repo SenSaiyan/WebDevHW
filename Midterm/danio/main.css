@@ -1,0 +1,218 @@
+h1{
+	font-family: 'Playfair Display SC', serif;
+}
+
+body{
+	font-family: 'Scada', sans-serif;
+}
+
+p{
+	font: 600 15px/1.8 "Lato", sans-serif;
+	text-align: center;
+}
+
+.container{
+	position: relative;
+	width: 40%;
+	/*padding:5%;*/
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	transition: 0.3s;
+	/*display: inline-block;*/
+}
+
+.image{
+	/*display: inline-block;*/
+	width: 100%;
+	height: auto;
+	/*float: left;*/
+}
+
+.overlay{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+  	right: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	transition: .5s ease;
+	background-color: #6d6d6d;
+}
+
+.container:hover .overlay {
+	opacity: .8;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.text {
+	font-family: 'Scada', sans-serif;
+	color: white;
+	font-size: 20px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	text-align: center;
+	opacity: 1;
+}
+
+/*img {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+}*/
+
+/*body, html {
+  height: 100%;
+  margin: 0;
+  font: 400 15px/1.8 "Lato", sans-serif;
+  color: #6d6d6d;
+}
+
+.bgimg-1, .bgimg-2, .bgimg-3 {
+  position: relative;
+  opacity: 0.65;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.bgimg-1 {
+  background-image: url("img_parallax.jpg");
+  min-height: 400PX;
+}
+
+.bgimg-2 {
+  background-image: url("img_parallax2.jpg");
+  min-height: 400px;
+}
+
+.bgimg-3 {
+  background-image: url("img_parallax3.jpg");
+  min-height: 400px;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #6d6d6d;
+}
+
+.caption span.border {
+  background-color: #111;
+  color: #6d6d6d;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
+
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+}
+
+@media only screen and (max-device-width: 1024px) {
+    .bgimg-1, .bgimg-2, .bgimg-3 {
+        background-attachment: scroll;
+    }
+}*/
+
+body, html{
+	height: 100%;
+}
+
+.parallax1{
+	background-image: url(img_parallax.jpeg);
+	height:65%;
+	background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.parallax2{
+	background-image: url(img_parallax2.jpg);
+	height:100%;
+	background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.parallax3{
+	background-image: url(img_parallax3.jpg);
+	height:100%;
+	background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #fffeff;
+}
+
+.caption span.border {
+  background-color: #111;
+  color: #fffeff;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
+
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+}
+
+@media only screen and (max-device-width: 1024px) {
+    .bgimg-1, .bgimg-2, .bgimg-3 {
+        background-attachment: scroll;
+    }
+}
+
+ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #6d6d6d;
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	z-index: 9999;
+}
+
+li{
+	float: left;
+}
+
+li a{
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 10px 10px;
+	text-decoration: none;
+}
+
+li a:hover{
+	background-color: #ffffff;
+	text-decoration: underline;
+	color: #6d6d6d; 
+}
