@@ -15,6 +15,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="UTF-8">
 	<meta name="author" content="Daniel Jiang">
+	<!-- <script src="anime.min.js"></script> -->
 	<title>Daniel Jiang</title>
 </head>
 <body>
@@ -31,6 +32,147 @@
 	</header>
 	<br>
 	<br>
+	<div>
+		<canvas id="my_canvas" style="width: 100%; height: 300px border:1px solid #d3d3d3;">
+			Your browser does not support the HTML5 canvas tag.
+		</canvas>
+		<script type="text/javascript">
+			var canvas = document.getElementById("my_canvas");
+			var c = canvas.getContext("2d");
+			var c_width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+
+			var timer;
+			var count = 0;
+
+			//create the container that will hold the boincing balls.
+			var container = {
+			  x: 0,
+			  y: 0,
+			  width: 300,
+			  height: 200
+			};
+			//create the array of circles that will be animated
+			var circles = [{
+			  x: 50,
+			  y: 100,
+			  r: 10,
+			  vx: 2,
+			  vy: 2,
+			  color: 125
+			}, {
+			  x: 150,
+			  y: 80,
+			  r: 20,
+			  vx: 1,
+			  vy: 2,
+			  color: 205
+			}, {
+			  x: 90,
+			  y: 150,
+			  r: 5,
+			  vx: 3,
+			  vy: 1,
+			  color: 25
+			}, {
+			  x: 100,
+			  y: 50,
+			  r: 15,
+			  vx: 4,
+			  vy: 4,
+			  color: 100
+			}];
+
+			document.addEventListener("mousedown", function(){
+			     timer=setInterval(function(){
+			        document.getElementById("testdiv").innerHTML = count++;
+			        //function scramble(event){
+						mouse_x = event.clientX;
+						mouse_y = event.clientY;
+
+						for (var i = 0; i < circles.length; i++) {
+							if (circles[i].x < mouse_x){
+								circles[i].x += 1;
+							} else if (circles[i].x > mouse_x){
+								circles[i].x -= 1;
+							}
+							else {
+
+							}
+							if (circles[i].y < mouse_y){
+								circles[i].y += 1;
+							} else if (circles[i].y > mouse_y){
+								circles[i].y -= 1;
+							}
+							else {
+
+							}
+						}
+					//}
+			     }, 100); // the above code is executed every 100 ms
+			});
+			// function scramble(event){
+			// 	mouse_x = event.clientX;
+			// 	mouse_y = event.clientY;
+
+			// 	for (var i = 0; i < circles.length; i++) {
+			// 		if (circles[i].x < mouse_x){
+			// 			circles[i].x += 1;
+			// 		} else if (circles[i].x > mouse_x){
+			// 			circles[i].x -= 1;
+			// 		}
+			// 		else {
+
+			// 		}
+			// 		if (circles[i].y < mouse_y){
+			// 			circles[i].y += 1;
+			// 		} else if (circles[i].y > mouse_y){
+			// 			circles[i].y -= 1;
+			// 		}
+			// 		else {
+
+			// 		}
+			// 	}
+			// }
+
+			function animate() {
+				//draw the container
+				c.fillStyle = "#ffffff";
+				c.fillRect(container.x, container.y, container.width, container.height);
+
+				//loop throughj the circles array
+				for (var i = 0; i < circles.length; i++) {
+				    //draw the circles
+				    c.fillStyle = 'hsl(' + circles[i].color++ + ', 100%, 50%)';
+				    c.beginPath();
+				    c.arc(circles[i].x, circles[i].y, circles[i].r, 0, Math.PI * 2, true);
+				    c.fill();
+				    c.stroke();
+
+				    //animation
+				    if (circles[i].x - circles[i].r + circles[i].vx < container.x){ //left bound
+				    	circles[i].vx = -circles[i].vx;
+				    }
+				    if (circles[i].x + circles[i].r + circles[i].vx > container.x + container.width) { //right bound
+				    	circles[i].vx = -circles[i].vx;
+				    }
+
+				    if ((circles[i].y + circles[i].r + circles[i].vy) > (container.y + container.height)){ //bottom bound
+						circles[i].vy = -circles[i].vy;
+				    }
+				    if (circles[i].y - circles[i].r + circles[i].vy < container.y) { //top bound
+				    	circles[i].vy = -circles[i].vy;
+				    }
+				    circles[i].x += circles[i].vx
+				    circles[i].y += circles[i].vy
+				}
+				requestAnimationFrame(animate);
+			}
+			document.addEventListener("mouseup", function(){
+			    if (timer) clearInterval(timer)
+			});
+			requestAnimationFrame(animate);
+		</script>
+	</div>
 	<div>
 		<p style="padding-bottom: 20px; padding-top: 15px">Welcome to my portfolio site! I hope that all my visitors can not only get a sense of the techniques behind my work, but also what I aim to accomplish with every project. My personal philosophy on games is that they are the most powerful storytelling medium of today's society, and as a designer, I have a duty to use all the facets that only this medium provides to tell stories that are representative of not only different cultures, but also the different values and philosophies that are behind them. I want to create projects that are not only fluid and satisfying to experience, but ones that can expand upon the way that people play games or see the world around them through the mechanics and narratives I present. My work aims to create the same types of experiences that made me fall in love with games as a young kid so many years ago, alongside the other kids whose hearts race over online battles, who cry when they lose a character close to them, and who stare in awe when they look down from the mountaintop they worked so hard to climb. I want to make games that can bring those kids out of tired bodies and sad faces, and games that are powerful enough to bring people, who may look different but laugh the same together over a shared passion.</p>
 	</div>
