@@ -17,162 +17,82 @@
 	<meta name="author" content="Daniel Jiang">
 	<!-- <script src="anime.min.js"></script> -->
 	<title>Daniel Jiang</title>
+
+	<script>
+		function icon() {
+    		var x = document.getElementById("myTopnav");
+   			 if (x.className === "topnav") {
+       			x.className += " responsive";
+    		} else {
+        		x.className = "topnav";
+    		}
+		}
+	</script>
+
+	<script>
+		var slideIndex = [1,1];
+		var slideId = ["mySlides1", "mySlides2"]
+		showSlides(1, 0);
+		showSlides(1, 1);
+
+		function plusSlides(n, no) {
+		  showSlides(slideIndex[no] += n, no);
+		}
+
+		function showSlides(n, no) {
+		  var i;
+		  var x = document.getElementsByClassName(slideId[no]);
+		  if (n > x.length) {slideIndex[no] = 1}    
+		  if (n < 1) {slideIndex[no] = x.length}
+		  for (i = 0; i < x.length; i++) {
+		     x[i].style.display = "none";  
+		  }
+		  x[slideIndex[no]-1].style.display = "block";  
+		}
+	</script>
+
+	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+		  // Add smooth scrolling to all links
+		  $("a").on('click', function(event) {
+
+		    // Make sure this.hash has a value before overriding default behavior
+		    if (this.hash !== "") {
+		      	// Prevent default anchor click behavior
+		      	event.preventDefault();
+
+		     	// Store hash
+		      	var hash = this.hash;
+
+		      	// Using jQuery's animate() method to add smooth page scroll
+		      	// The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+		      	$('html, body').animate({
+		        	scrollTop: $(hash).offset().top
+		      	}, 1000, function(){
+		   
+		        // Add hash (#) to URL when done scrolling (default click behavior)
+		        window.location.hash = hash;
+		      });
+		    } // End if
+		  });
+		});
+	</script>
 </head>
+
 <body>
-	<header>
-		<nav>
-			<ul>
-				<li><a href="#games">Games</a></li>
-				<li><a href="#design">Design</a></li>
-				<li><a href="#art">Art</a></li>
-				<li><a href="#photo">Photography</a></li>
-				<li><a href="#about">About</a></li>
-			</ul>
-		</nav>
-	</header>
+	<nav>
+		<div class="topnav" id="myTopnav">	
+			<a href="#games">Games</a>
+			<a href="#design">Design</a>
+			<a href="#art">Art</a>
+			<a href="#photo">Photography</a>
+			<a href="#about">About</a>
+			<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="icon()">&#9776;</a>		
+		</div>
+	</nav>
 	<br>
 	<br>
-	<div>
-		<canvas id="my_canvas" style="width: 100%; height: 300px border:1px solid #d3d3d3;">
-			Your browser does not support the HTML5 canvas tag.
-		</canvas>
-		<script type="text/javascript">
-			var canvas = document.getElementById("my_canvas");
-			var c = canvas.getContext("2d");
-			var c_width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-
-			var timer;
-			var count = 0;
-
-			//create the container that will hold the boincing balls.
-			var container = {
-			  x: 0,
-			  y: 0,
-			  width: 300,
-			  height: 200
-			};
-			//create the array of circles that will be animated
-			var circles = [{
-			  x: 50,
-			  y: 100,
-			  r: 10,
-			  vx: 2,
-			  vy: 2,
-			  color: 125
-			}, {
-			  x: 150,
-			  y: 80,
-			  r: 20,
-			  vx: 1,
-			  vy: 2,
-			  color: 205
-			}, {
-			  x: 90,
-			  y: 150,
-			  r: 5,
-			  vx: 3,
-			  vy: 1,
-			  color: 25
-			}, {
-			  x: 100,
-			  y: 50,
-			  r: 15,
-			  vx: 4,
-			  vy: 4,
-			  color: 100
-			}];
-
-			document.addEventListener("mousedown", function(){
-			     timer=setInterval(function(){
-			        document.getElementById("testdiv").innerHTML = count++;
-			        //function scramble(event){
-						mouse_x = event.clientX;
-						mouse_y = event.clientY;
-
-						for (var i = 0; i < circles.length; i++) {
-							if (circles[i].x < mouse_x){
-								circles[i].x += 1;
-							} else if (circles[i].x > mouse_x){
-								circles[i].x -= 1;
-							}
-							else {
-
-							}
-							if (circles[i].y < mouse_y){
-								circles[i].y += 1;
-							} else if (circles[i].y > mouse_y){
-								circles[i].y -= 1;
-							}
-							else {
-
-							}
-						}
-					//}
-			     }, 100); // the above code is executed every 100 ms
-			});
-			// function scramble(event){
-			// 	mouse_x = event.clientX;
-			// 	mouse_y = event.clientY;
-
-			// 	for (var i = 0; i < circles.length; i++) {
-			// 		if (circles[i].x < mouse_x){
-			// 			circles[i].x += 1;
-			// 		} else if (circles[i].x > mouse_x){
-			// 			circles[i].x -= 1;
-			// 		}
-			// 		else {
-
-			// 		}
-			// 		if (circles[i].y < mouse_y){
-			// 			circles[i].y += 1;
-			// 		} else if (circles[i].y > mouse_y){
-			// 			circles[i].y -= 1;
-			// 		}
-			// 		else {
-
-			// 		}
-			// 	}
-			// }
-
-			function animate() {
-				//draw the container
-				c.fillStyle = "#ffffff";
-				c.fillRect(container.x, container.y, container.width, container.height);
-
-				//loop throughj the circles array
-				for (var i = 0; i < circles.length; i++) {
-				    //draw the circles
-				    c.fillStyle = 'hsl(' + circles[i].color++ + ', 100%, 50%)';
-				    c.beginPath();
-				    c.arc(circles[i].x, circles[i].y, circles[i].r, 0, Math.PI * 2, true);
-				    c.fill();
-				    c.stroke();
-
-				    //animation
-				    if (circles[i].x - circles[i].r + circles[i].vx < container.x){ //left bound
-				    	circles[i].vx = -circles[i].vx;
-				    }
-				    if (circles[i].x + circles[i].r + circles[i].vx > container.x + container.width) { //right bound
-				    	circles[i].vx = -circles[i].vx;
-				    }
-
-				    if ((circles[i].y + circles[i].r + circles[i].vy) > (container.y + container.height)){ //bottom bound
-						circles[i].vy = -circles[i].vy;
-				    }
-				    if (circles[i].y - circles[i].r + circles[i].vy < container.y) { //top bound
-				    	circles[i].vy = -circles[i].vy;
-				    }
-				    circles[i].x += circles[i].vx
-				    circles[i].y += circles[i].vy
-				}
-				requestAnimationFrame(animate);
-			}
-			document.addEventListener("mouseup", function(){
-			    if (timer) clearInterval(timer)
-			});
-			requestAnimationFrame(animate);
-		</script>
-	</div>
 	<div>
 		<p style="padding-bottom: 20px; padding-top: 15px">Welcome to my portfolio site! I hope that all my visitors can not only get a sense of the techniques behind my work, but also what I aim to accomplish with every project. My personal philosophy on games is that they are the most powerful storytelling medium of today's society, and as a designer, I have a duty to use all the facets that only this medium provides to tell stories that are representative of not only different cultures, but also the different values and philosophies that are behind them. I want to create projects that are not only fluid and satisfying to experience, but ones that can expand upon the way that people play games or see the world around them through the mechanics and narratives I present. My work aims to create the same types of experiences that made me fall in love with games as a young kid so many years ago, alongside the other kids whose hearts race over online battles, who cry when they lose a character close to them, and who stare in awe when they look down from the mountaintop they worked so hard to climb. I want to make games that can bring those kids out of tired bodies and sad faces, and games that are powerful enough to bring people, who may look different but laugh the same together over a shared passion.</p>
 	</div>
@@ -222,10 +142,7 @@
 	<div class="parallax2" id="design">
 		<div class="caption"><h1><span style="padding:10px;"> DESIGN </span></h1></div>
 		<div class="quote"><p><i>"Good design is good business." - Ian Schrager</i></p></div>
-	</div>
-<!-- 
-	<p style="text-align: center; padding-top: 40px;"> Click on an Image for Full Size!</p> -->
-	
+	</div>	
 	<div style="text-align:center;padding:50px 80px;text-align: center;" style="float:left">
 		<div class="container">
 			<a href="danieljiang-logoorbrand.png">
@@ -261,153 +178,190 @@
 		<div class="caption"><h1><span style="padding:10px;"> ART </span></h1></div>
 		<div class="quote"><p><i>"I just love pretty things, whether it is art, a song or a pair of shoes." - Rita Ora</i></p></div>
 	</div>
-<!-- 
-	<p style="text-align: center; padding-top: 40px;"> Click on an Image for Full Size!</p> -->
 
 	<div style="text-align:center;padding:50px 80px;text-align: center;" style="float:left">
-		<div class="container">
-			<a href="Play Time.JPG">
-			<img src="thumbnails/play_time.jpg" class="image">
-			<div class="overlay">
-				<div class="text">Playtime</div>
-				<div class="container-caption">Color Pencil on Paper, Winner of 2011 Scholastic Art and Writing Awards Silver Key</div>
+		<div class="slideshow-container">
+			<div class="mySlides1">
+				<div class="container">
+					<a href="Play Time.JPG">
+						<img src="thumbnails/play_time.jpg" class="image" style="">
+						<div class="overlay">
+							<div class="text">Playtime</div>
+							<div class="container-caption">Color Pencil on Paper, Winner of 2011 Scholastic Art and Writing Awards Silver Key</div>
+						</div>
+					</a>
+				</div>
 			</div>
-			</a>
-		</div>
-		<div class="container">
-			<a href="3D Modeling for Games.jpg">
-			<img src="thumbnails/tanks.jpg" class="image">
-			<div class="overlay">
-				<div class="text">Tanks</div>
-				<div class="container-caption">Maya, SCAD Summer Seminar 2011</div>
+			<div class="mySlides1">
+			 	<div class="container">
+			 		<a href="3D Modeling for Games.jpg">
+			 			<img src="thumbnails/tanks.jpg" class="image" style="">
+			 			<div class="overlay">
+			 				<div class="text">Tanks</div>
+			 				<div class="container-caption">Maya, SCAD Summer Seminar 2011</div>
+			 			</div>
+			 		</a>
+			 	</div>
 			</div>
-			</a>
-		</div>
-		<div class="container">
-			<a href="Daniel Jiang 1.JPG">
-			<img src="thumbnails/patagonia.jpg" class="image">
-			<div class="overlay">
-				<div class="text">Patagonia</div>
-				<div class="container-caption">Graphite and Color Pencil on Paper</div>
+
+			<div class="mySlides1">
+			  	<div class="container">
+			  		<a href="Daniel Jiang 1.JPG">
+			  			<img src="thumbnails/patagonia.jpg" class="image" style="">
+			  			<div class="overlay">
+			  				<div class="text">Patagonia</div>
+			  				<div class="container-caption">Graphite and Color Pencil on Paper</div>
+			  			</div>
+			  		</a>
+			  	</div>
 			</div>
-		</a>
-		</div>
-		<div class="container">
-			<a href="Daniel Jiang 2.JPG">
-			<img src="thumbnails/heat.jpg" class="image">
-			<div class="overlay">
-				<div class="text">Heat</div>
-				<div class="container-caption">Photoshop, SCAD Summer Seminar 2013</div>
+			<div class="mySlides1">
+				<div class="container">
+					<a href="Daniel Jiang 2.JPG">
+						<img src="thumbnails/heat.jpg" class="image" style="">
+						<div class="overlay">
+							<div class="text">Heat</div>
+							<div class="container-caption">Photoshop, SCAD Summer Seminar 2013</div>
+						</div>
+					</a>
+				</div>
 			</div>
-		</a>
-		</div>
-		<div class="container">
-			<a href="Daniel Jiang 3.JPG">
-			<img src="thumbnails/fats.jpg" class="image">
-			<div class="overlay">
-				<div class="text">Fats</div>
-				<div class="container-caption">Clay, SCAD Summer Seminar 2013</div>
+			<div class="mySlides1">
+				<div class="container">
+					<a href="Daniel Jiang 3.JPG">
+						<img src="thumbnails/fats.jpg" class="image" style="">
+						<div class="overlay">
+							<div class="text">Fats</div>
+							<div class="container-caption">Clay, SCAD Summer Seminar 2013</div>
+						</div>
+					</a>
+				</div>
 			</div>
-		</a>
-		</div>
-		<div class="container">
-			<a href="DSCN7576.JPG">
-			<img src="thumbnails/dive.jpg" class="image">
-			<div class="overlay">
-				<div class="text">Dive</div>
-				<div class="container-caption">Watercolor on Paper</div>
+			<div class="mySlides1">
+				<div class="container">
+					<a href="DSCN7576.JPG">
+						<img src="thumbnails/dive.jpg" class="image" style="">
+						<div class="overlay">
+							<div class="text">Dive</div>
+							<div class="container-caption">Watercolor on Paper</div>
+						</div>
+					</a>
+				</div>
 			</div>
-		</a>
-		</div>
-		<div class="container">
-			<a href="DSCN7577.JPG">
-			<img src="thumbnails/sun.jpg" class="image">
-			<div class="overlay">
-				<div class="text">End of Days</div>
-				<div class="container-caption">Watercolor and Color Pencil on Paper</div>
+			<div class="mySlides1">
+				<div class="container">
+					<a href="DSCN7577.JPG">
+						<img src="thumbnails/sun.jpg" class="image" style="">
+						<div class="overlay">
+							<div class="text">End of Days</div>
+							<div class="container-caption">Watercolor and Color Pencil on Paper</div>
+						</div>
+					</a>
+				</div>
 			</div>
-		</a>
-		</div>
-		<div class="container">
-			<a href="IMG_3319.JPG">
-			<img src="thumbnails/peppers.jpg" class="image">
-			<div class="overlay">
-				<div class="text">The Red</div>
-				<div class="container-caption">Graphite and Color Pencil on Paper</div>
+
+			<div class="mySlides1">
+				<div class="container">
+					<a href="IMG_3319.JPG">
+						<img src="thumbnails/peppers.jpg" class="image" style="">
+						<div class="overlay">
+							<div class="text">The Red</div>
+							<div class="container-caption">Graphite and Color Pencil on Paper</div>
+						</div>
+					</a>
+				</div>
 			</div>
-		</a>
-		</div>
-		<div class="container">
-			<a href="IMG_3321.JPG">
-			<img src="thumbnails/food.jpg" class="image">
-			<div class="overlay">
-				<div class="text">Groceries</div>
-				<div class="container-caption">Graphite and Color Pencil on Paper</div>
+
+			<div class="mySlides1">
+				<div class="container">
+					<a href="IMG_3321.JPG">
+						<img src="thumbnails/food.jpg" class="image" style="">
+						<div class="overlay">
+							<div class="text">Groceries</div>
+							<div class="container-caption">Graphite and Color Pencil on Paper</div>
+						</div>
+					</a>
+				</div>
 			</div>
-		</a>
-		</div>
-		<div class="container">
-			<a href="IMG_3324.JPG">
-			<img src="thumbnails/watercolor.jpg" class="image">
-			<div class="overlay">
-				<div class="text">Pathway</div>
-				<div class="container-caption">Watercolor on Paper</div>
+
+			<div class="mySlides1">
+				<div class="container">
+					<a href="IMG_3324.JPG">
+						<img src="thumbnails/watercolor.jpg" class="image" style="">
+						<div class="overlay">
+							<div class="text">Pathway</div>
+							<div class="container-caption">Watercolor on Paper</div>
+						</div>
+					</a>
+				</div>
 			</div>
-		</a>
-		</div>
-		<div class="container">
-			<a href="IMG_3329.JPG">
-			<img src="thumbnails/interior.jpg" class="image">
-			<div class="overlay">
-				<div class="text">Building Interior</div>
-				<div class="container-caption">Ink and Color Pencil on Paper</div>
+
+			<div class="mySlides1">
+				<div class="container">
+					<a href="IMG_3329.JPG">
+						<img src="thumbnails/interior.jpg" class="image" style="">
+						<div class="overlay">
+							<div class="text">Building Interior</div>
+							<div class="container-caption">Ink and Color Pencil on Paper</div>
+						</div>
+					</a>
+				</div>
 			</div>
-		</a>
+
+			<a class="prev unselectable" onclick="plusSlides(-1, 0)" unselectable="on">&#10094;</a>
+			<a class="next unselectable" onclick="plusSlides(1, 0)" unselectable="on">&#10095;</a>
+
 		</div>
 	</div>
-
+		
 	<div class="parallax5" id="photo">
 		<div class="caption"><h1><span style="padding:10px;"> Photography </span></h1></div>
 		<div class="quote"><p><i>“A portrait is not made in the camera but on either side of it.” - Edward Steichen</i></p></div>
 	</div>
-<!-- 
-	<p style="text-align: center; padding-top: 40px;"> Click on an Image for Full Size and Original Resolution!</p> -->
-
+	<br style="padding: 0px;">
 	<div style="text-align:center;padding:50px 80px;text-align: center;" style="float:left">
-		<div class="container">
-			<a href="_MG_1020.JPG">
-				<img src="thumbnails/icecream.jpg" class="image">
-			</a>
-		</div>
-		<div class="container">
-			<a href="_MG_1021.JPG">
-				<img src="thumbnails/car.jpg" class="image">
-			</a>
-		</div>
-		<div class="container">
-			<a href="Hopeless.png">
-				<img src="thumbnails/hopeless.jpg" class="image">
-			</a>
-		</div>
-		<div class="container">
-			<a href="halal1.jpg">
-				<img src="thumbnails/halal1.jpg" class="image">
-			</a>
-		</div>
-		<div class="container">
-			<a href="IMG_0201.jpg">
-				<img src="thumbnails/waffles.jpg" class="image">
-			</a>
-		</div>
-		<div class="container">
-			<a href="Nicole's Gift.png">
-				<img src="thumbnails/nicole_s_gift.jpg" class="image">
-			</a>
-		</div>
-		<div class="container">
-			<a href="parttime.jpg">
-				<img src="thumbnails/parttime.jpg" class="image">
-			</a>
+		<div class="slideshow-container">
+			<div class="mySlides2">
+			  	<a href="_MG_1020.JPG" target="_blank" style="box-shadow: 0 10px 10px 0 rgba(0,0,0,0.2);">
+			  		<img src="thumbnails/icecream.jpg" style="">
+				</a>
+			</div>
+
+			<div class="mySlides2">
+			 	<a href="_MG_1021.JPG" target="_blank" style="box-shadow: 0 10px 10px 0 rgba(0,0,0,0.2);">
+			 		<img src="thumbnails/car.jpg" style="">
+				</a>
+			</div>
+
+			<div class="mySlides2">
+			  	<a href="Hopeless.png" target="_blank" style="box-shadow: 0 10px 10px 0 rgba(0,0,0,0.2);">
+			  		<img src="thumbnails/hopeless.jpg" style="">
+			  	</a>
+			</div>
+			<div class="mySlides2">
+				<a href="halal1.jpg" target="_blank" style="box-shadow: 0 10px 10px 0 rgba(0,0,0,0.2);">
+					<img src="thumbnails/halal1.jpg" style="">
+				</a>
+			</div>
+			<div class="mySlides2">
+				<a href="IMG_0201.jpg" target="_blank" style="box-shadow: 0 10px 10px 0 rgba(0,0,0,0.2);">
+					<img src="thumbnails/waffles.jpg" style="">
+				</a>
+			</div>
+			<div class="mySlides2">
+				<a href="Nicole's Gift.png" target="_blank" style="box-shadow: 0 10px 10px 0 rgba(0,0,0,0.2);">
+					<img src="thumbnails/nicole_s_gift.jpg" style="">
+				</a>
+			</div>
+			<div class="mySlides2">
+				<a href="parttime.jpg" target="_blank" style="box-shadow: 0 10px 10px 0 rgba(0,0,0,0.2);">
+					<img src="thumbnails/parttime.jpg" style="">
+				</a>
+			</div>
+
+			<a class="prev unselectable" onclick="plusSlides(-1, 1)" unselectable="on">&#10094;</a>
+			<a class="next unselectable" onclick="plusSlides(1, 1)" unselectable="on">&#10095;</a>
+
 		</div>
 	</div>
 
@@ -433,14 +387,14 @@
 			Despite branching out into all sorts of areas during my time at college, my passion for making games and having fun with everyone of all walks of life has never once faded. Everything I have done was with the intention of learning of how I can make expereiences enjoyable for all people, and my studies at NYU have all been geared towards game development and design.</p>
 	</div>
 
-	<div style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+	<div style="display: inline-block; text-align: center; width: 100%;">
 		<a href="mailto:djj286@nyu.edu" target="_blank">
-			<img src="mail.png" style="position: relative; padding: 0px 10px 0px 10px; float: left; display: inline;">
+			<img src="mail.png">
 		</a>
 		<a href="Daniel_Jiang_Resume.pdf" target="_blank">
-			<img src="resume.png" style="position: relative; padding: 0px 10px 0px 10px; float: left; display: inline;">
+			<img src="resume.png">
 		</a>
-		<a href="https://www.linkedin.com/in/daniel-jiang-a4165b12a/" target="_blank" style="position: relative; padding: 0px 10px 0px 10px; display: inline;">
+		<a href="https://www.linkedin.com/in/daniel-jiang-a4165b12a/" target="_blank">
 			<img src="linkedin.png">
 		</a>
 	</div>
