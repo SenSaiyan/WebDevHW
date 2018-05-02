@@ -2,7 +2,9 @@
 Intro to Web Dev Spring 2018
 [link to recipe site](http://sites.bxmc.poly.edu/~danieljiang/Web%20Dev/recipe.html)
 
-[link to final site hosted on bxmc server](http://sites.bxmc.poly.edu/~danieljiang/self/danio/)
+[link to gitpage for final](https://sensaiyan.github.io)
+
+[403 errored link](http://sites.bxmc.poly.edu/~danieljiang/self/danio/)
 
 The goals I set out for the final in order of priority:
 1. Smooth Scrolling for Header
